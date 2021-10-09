@@ -6,6 +6,10 @@ const inputDisciplines = document.querySelector('#disciplines')
 const inputPractices = document.querySelector('#practices')
 const inputWork = document.querySelector('#self-work')
 
+function getStudPlane(){
+  
+}
+
 btnSend.addEventListener('click', ()=>{
   fetch('./php/poop.php', {
     method:"POST",
