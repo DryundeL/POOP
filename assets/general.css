@@ -1,3 +1,10 @@
-:root{
-  
+.stud_plan{
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  gap: 10px;
+}
+.out{
+  display: grid;
+  grid-template-columns: auto;
+  gap: 10px;
 }
