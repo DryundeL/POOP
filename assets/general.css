@@ -8,3 +8,6 @@
   grid-template-columns: auto;
   gap: 10px;
 }
+button{
+  margin-top: 10px;
+}
