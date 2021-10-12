@@ -39,10 +39,65 @@
     </section>
   </div>  
   <h1 class="title">Проф модуль</h1>
+  <div class="wrapper">
   <section>
       <p class="out"></p>
-      
+      <div class="study-add__form">
+        <div class="study-add__header">
+          <span>Коды ПК</span>
+          <span>Наименование разделов</span>
+          <span>Всего</span>
+          <span>Дисциплины</span>
+          <span>Курсовые</span>
+          <span>Практики</span>
+          <span>Самостоятельная работа</span>
+        </div>
+        <hr>
+        <div class="study-add__rows">
+          <div class="study-add__item-row">
+            <input type="text" id="index">
+            <input type="text" id="name">
+            <input type="text" id="all">
+            <input type="text" id="disciplines">
+            <input type="text" id="courseworks">
+            <input type="text" id="practices">
+            <input type="text" id="self-work">
+          </div>
+        </div>
+        <div class="study-add__btns">
+          <button class="addStr">Добавить строку</button>
+        </div>
+      </div>
+      <div class="navButtons">
+      <button type="submit" id="btnKnowlegeSkills">Перейти к знаниям/умениям</button>
+      <button type="submit" id="btnNextProfModule">Перейте к след. Проф. модулю</button>
+      <button type="submit" id="btnDone">Завершить</button>
+      </div>
     </section>
+    </div>
+    <h1 class="title">Навыки</h1>
+    <div class="wrapper">
+    <section>
+        <p class="out"></p>
+        <div class="study-add__form">
+          <div class="study-add__header">
+            <span>Навыки</span>
+            <span>Тип навыка</span>
+          </div>
+          <hr>
+          <div class="study-add__rows">
+            <div class="study-add__item-row">
+              <input type="text" id="spell">
+              <input type="text" id="spell-type">
+            </div>
+          </div>
+        </div>
+        <div class="spellButtons">
+        <button type="submit" id="btnNextProfModule">Перейте к след. Проф. модулю</button>
+        <button type="submit" id="btnDone">Завершить</button>
+        </div>
+      </section>
+      </div>
   <script src="./assets/general.js"></script>
 </body>
 </html>

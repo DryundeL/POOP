@@ -45,7 +45,7 @@ hr {
 }
 .study-add__header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   
   font-weight: 600;
@@ -63,7 +63,7 @@ hr {
 }
 .study-add__item-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 10px;
 }
 .study-add__item-row input {
@@ -107,4 +107,34 @@ hr {
 }
 .study-add__btns button:hover {
   background-color: rgb(225, 231, 233);
+}
+.study-add__btns button,
+#btnKnowlegeSkills,#btnNextProfModule,#btnDone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 5px;
+
+  max-width: 230px;
+  width: 100%;
+  height: 40px;
+
+  background-color: rgb(226, 237, 240);
+  cursor: pointer;
+  border-radius: 10px;
+
+  transition: hover .3s ease;
+}
+#btnKnowlegeSkills,#btnNextProfModule,#btnDone {
+  margin: 0 auto 10px auto;
+}
+.study-add__btns button:hover {
+  background-color: rgb(225, 231, 233);
+}
+.navButtons{
+  margin-top: 10px;
+}
+.spellButtons{
+  margin-top: 50px;
 }
