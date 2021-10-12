@@ -8,30 +8,41 @@
   <link rel="stylesheet" href="./assets/general.css">
 </head>
 <body>
+  <h1 class="title">Учебный план</h1>
+  <div class="wrapper">
+    <section class="study-add">
+      <div class="study-add__form">
+        <div class="study-add__header">
+          <span>Индекс</span>
+          <span>Наименование</span>
+          <span>Всего</span>
+          <span>Дисциплины</span>
+          <span>Практики</span>
+          <span>Самостоятельная работа</span>
+        </div>
+        <hr>
+        <div class="study-add__rows">
+          <div class="study-add__item-row">
+            <input type="text" id="index">
+            <input type="text" id="name">
+            <input type="text" id="all">
+            <input type="text" id="disciplines">
+            <input type="text" id="practices">
+            <input type="text" id="self-work">
+          </div>
+        </div>
+        <div class="study-add__btns">
+          <button class="addStr">Добавить строку</button>
+        </div>
+      </div>
+      <button type="submit" id="btnSend">Отправить</button>
+    </section>
+  </div>  
+  <h1 class="title">Проф модуль</h1>
   <section>
-    <h1>Учебный план</h1>
-    <div class="stud_plan">
-      <span>Индекс</span>
-      <span>Наименование</span>
-      <span>Всего</span>
-      <span>Дисциплины</span>
-      <span>Практики</span>
-      <span>Самостоятельная работа</span>
-      <input type="text" id="index">
-      <input type="text" id="name">
-      <input type="text" id="all">
-      <input type="text" id="disciplines">
-      <input type="text" id="practices">
-      <input type="text" id="self-work">
-    </div>
-      <button class="addStr"> добавить строку</button>
-      <button type="sumit" id="btnSend">Send</button>
-    <p class="out"></p>
-  </section>
-  <section>
-    <h1>Проф модуль</h1>
-    
-  </section>
+      <p class="out"></p>
+      
+    </section>
   <script src="./assets/general.js"></script>
 </body>
 </html>
