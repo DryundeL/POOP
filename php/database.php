@@ -1,5 +1,6 @@
 <?php
   require 'db.php';
+  require './libs/rb.php';
 
   $link = new mysqli($host, $user, $password, $database);
 

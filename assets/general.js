@@ -9,7 +9,7 @@ const inputWork = document.querySelector('#self-work')
 const out = document.querySelector('.out')
 
 function getStudPlane(){
-  fetch('./php/poop.php')
+  fetch('./php/database.php')
     .then(res => res.json())
     .then(res=>{
      res.forEach(result=>{
@@ -21,7 +21,7 @@ function getStudPlane(){
 getStudPlane()
 
 btnSend.addEventListener('click', ()=>{
-  fetch('./php/poop.php', {
+  fetch('./php/database.php', {
     method:"POST",
     body: JSON.stringify({
       index: inputIndex.value,
