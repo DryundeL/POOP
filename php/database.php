@@ -5,17 +5,24 @@
   if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $_POST = json_decode(file_get_contents('php://input'), true);
     
-    $studPlan = R::dispense('studyplane');
+    $records = $_POST['records'];
+    foreach ($records as $record) {
+      var_dump($record);
+      $studPlan = R::dispense('studyplane');
+      $studPlan -> specName = '';
+      $studPlan -> indexPlan = $record['index'];
+      $studPlan -> name = $record['name'];
+      $studPlan -> allPlan = $record['all'];
+      $studPlan -> disciplines = $record['disciplines'];
+      $studPlan -> practices = $record['practices'];
+      $studPlan -> individualWork = $record['self_work'];
 
-    $studPlan -> specName = '';
-    $studPlan -> indexPlan = $_POST[index];
-    $studPlan -> name = $_POST[name];
-    $studPlan -> allPlan = $_POST[all];
-    $studPlan -> disciplines = $_POST[disciplines];
-    $studPlan -> practices = $_POST[practices];
-    $studPlan -> individualWork = $_POST[self_work];
-
-    R::store($studPlan);
+      R::store($studPlan);
+    }
+  }
+  else if($_SERVER["REQUEST_METHOD"] === "GET"){
+    $studPlans = R::findAll('studyplane');
+    echo json_encode($studPlans);
   }
   // $link = new mysqli($host, $user, $password, $database);
 
