@@ -41,13 +41,17 @@ btnSend.addEventListener('click', ()=>{
 })
 
 const btnAddStr = document.querySelector('.addStr')
-const studPlane = document.querySelector('.stud_plan')
+const studPlane = document.querySelector('.study-add__rows')
 
 btnAddStr.addEventListener('click', ()=>{
-  studPlane.innerHTML +=`<input type="text" id="index">
-  <input type="text" id="name">
-  <input type="text" id="all">
-  <input type="text" id="disciplines">
-  <input type="text" id="practices">
-  <input type="text" id="self-work">`
+  studPlane.innerHTML +=`
+  <div class="study-add__item-row">
+    <input type="text" id="index">
+    <input type="text" id="name">
+    <input type="text" id="all">
+    <input type="text" id="disciplines">
+    <input type="text" id="practices">
+    <input type="text" id="self-work">
+  </div>
+  `
 })
