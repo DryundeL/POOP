@@ -19,24 +19,22 @@ function postData(rows, type, parent = undefined) {
       parent,
       items: records,
     })
-  }).then(() => getData(type, parent))
+  }).then(() => {
+    getLastId(type).then(id => false
+      // document.location = `./${getNextType(type)}.html?id=${id}` 
+    )
+  })
 }
 
 function getData(type, parent = undefined) {
-  fetch(`./php/api/${type}.php${type !== 'plans' ? '?id=' + parent : ''}`)
-    .then(res => res.json())
-    .then(res=>{
+  fetch(`./php/api/${type}.php${type !== 'specialities' ? '?id=' + parent : ''}`)
+  .then(res => res.json())
+  .then(res=>{
       out.innerHTML = ''
       Object.values(res).forEach(row => {
         const tr = document.createElement('tr')
 
-        if (type === 'specialities') {
-          tr.addEventListener('click', () => document.location = `./plans.html?id=${row.id}`)
-        } else if (type === 'plans') {
-          tr.addEventListener('click', () => document.location = `./modules.html?id=${row.id}`)
-        } else if (type === 'modules') {
-          tr.addEventListener('click', () => document.location = `./skills.html?id=${row.id}`)
-        }
+        tr.addEventListener('click', () => document.location = `./${getNextType(type)}.html?id=${row.id}`)
         
         Object.entries(row).forEach(col => {
           const key = col[0]
@@ -50,6 +48,20 @@ function getData(type, parent = undefined) {
         out.append(tr)
      })
     })
+}
+
+async function getLastId(type) {
+  const res = await fetch(`./php/api/${type}.php`)
+  const json = await res?.json()
+  const id = Math.max(...Object.keys(json)) ?? 1
+  console.log(json)
+  return id
+}
+
+function getNextType(type) {
+  const types = ['specialities', 'plans', 'modules', 'skills']
+  const indexCurrentType = types.indexOf(type)
+  return types[indexCurrentType + 1]
 }
 
 const btnAdd  = document.querySelector('.addStr')
