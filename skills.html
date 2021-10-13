@@ -8,14 +8,13 @@
   <link rel="stylesheet" href="./assets/css/general.css">
 </head>
 <body>
-  <h1 class="title">Специальности</h1>
+  <h1 class="title">Навыки</h1>
   <div class="wrapper">
     <section class="study-add">
       <div class="study-add__form">
         <div class="study-add__header">
-          <span>Код специальности</span>
-          <span>Наименование специальности</span>
-          <span>Дата обновления</span>
+          <span>Навыки</span>
+          <span>Тип навыка</span>
         </div>
         <hr>
           <table id="out" data-name='plans'>
@@ -24,18 +23,21 @@
         <hr>
         <div class="study-add__rows" id="add-rows">
           <div class="study-add__item-row" id="add-row">
-            <input type="text" id="code-speciality" data-title="code-speciality">
-            <input type="text" id="name-speciality" data-title="name-speciality">
+            <input type="text" id="spell" data-title="spell">
+            <input type="text" id="spell-type" data-title="spell-type">
           </div>
         </div>
         <div class="study-add__btns">
           <button class="addStr">Добавить строку</button>
         </div>
       </div>
-      <button type="submit" id="btnSend">Отправить</button>
+      <div class="navButtons">
+        <button type="submit" id="btnNextProfModule" class="btn-send">Перейте к след. Проф. модулю</button>
+        <button type="submit" id="btnDone" class="btn-send">Завершить</button>
+      </div>
     </section>
   </div>  
   <script src="./assets/js/general.js"></script>
-  <script src="./assets/js/specialities.js"></script>
+  <script src="./assets/js/skills.js"></script>
 </body>
 </html>

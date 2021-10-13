@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./assets/css/general.css">
+</head>
+<body>
+  <h1 class="title">Проф модуль</h1>
+  <div class="wrapper">
+    <section class="study-add">
+      <div class="study-add__form">
+        <div class="study-add__header">
+          <span>Наименование Проф. модуля</span>
+          <span>Код проф. модуля</span>
+          <span>Коды ПК</span>
+          <span>Наименование разделов</span>
+          <span>Всего</span>
+          <span>Дисциплины</span>
+          <span>Курсовые</span>
+          <span>Практики</span>
+          <span>Самостоятельная работа</span>
+        </div>
+        <hr>
+          <table id="out" data-name='plans'>
+            
+          </table>
+        <hr>
+        <div class="study-add__rows" id="add-rows">
+          <div class="study-add__item-row" id="add-row">
+            <input type="text" id="name-module" data-title="name-module">
+            <input type="text" id="code-module" data-title="code-module">
+            <input type="text" id="codes-pk" data-title="codes-pk">
+            <input type="text" id="name-section" data-title="name-section">
+            <input type="text" id="all" data-title="all">
+            <input type="text" id="disciplines" data-title="disciplines">
+            <input type="text" id="courseworks" data-title="courseworks">
+            <input type="text" id="practices" data-title="practices">
+            <input type="text" id="self-work" data-title="self-work">
+          </div>
+        </div>
+        <div class="study-add__btns">
+          <button class="addStr">Добавить строку</button>
+        </div>
+      </div>
+      <div class="navButtons">
+        <!-- <button type="submit" id="btnKnowlegeSkills">Перейти к знаниям/умениям</button> -->
+        <button type="submit" id="btnNextProfModule" class="btn-send">Перейте к след. Проф. модулю</button>
+        <button type="submit" id="btnDone" class="btn-send">Завершить</button>
+      </div>
+    </section>
+  </div>  
+  <script src="./assets/js/general.js"></script>
+  <script src="./assets/js/modules.js"></script>
+</body>
+</html>
