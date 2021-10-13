@@ -11,7 +11,12 @@
       $params[$param[0]] = $param[1];
     }
 
-    $plans = R::find('modules', 'parent = ?', [$params['id']]);
+    if (isset($params['id'])) {
+      $plans = R::find('modules', 'parent = ?', [$params['id']]);
+    } else {
+      $plans = R::findAll('modules');
+    }
+    
     echo json_encode($plans);
   } else if ($_SERVER["REQUEST_METHOD"] === "POST") 
   {

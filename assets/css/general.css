@@ -45,11 +45,6 @@ hr {
   background-color: #c7c6c6;
 }
 .study-add__header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  
-  font-weight: 600;
   font-size: 18px;
 }
 .study-add__header span {
@@ -57,17 +52,7 @@ hr {
   max-width: 230px;
   width: 100%;
 }
-.study-add__rows {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 8px;
-}
-.study-add__item-row,
-.prof-add__item-row {
-  display: flex;
-  justify-content: space-around;
-  gap: 10px;
-}
+
 .study-add__item-row input,
 .prof-add__item-row input {
   max-width: 200px;
@@ -111,7 +96,7 @@ hr {
   background-color: rgb(225, 231, 233);
 }
 .study-add__btns button,
-.btn-send {
+.btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,13 +123,37 @@ hr {
   margin-top: 50px;
 }
 
+table {
+  border-collapse:collapse;
+}
+
+thead,
+tbody {
+  border-bottom: 2px solid black;
+}
+
+tbody >
 tr:hover {
-  outline: 2px solid black;
+  background: #ebebeb;
   cursor: pointer;
+}
+
+tfoot td{
+  padding: 0px 24px;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 12px;
 }
 
 .navButtons {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.disabled {
+  opacity: .5;
 }

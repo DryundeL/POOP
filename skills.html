@@ -10,30 +10,37 @@
 <body>
   <h1 class="title">Навыки</h1>
   <div class="wrapper">
+    <button class="btn" id="btn-back">Назад</button>
     <section class="study-add">
       <div class="study-add__form">
-        <div class="study-add__header">
-          <span>Навыки</span>
-          <span>Тип навыка</span>
-        </div>
-        <hr>
-          <table id="out" data-name='plans'>
-            
-          </table>
-        <hr>
-        <div class="study-add__rows" id="add-rows">
-          <div class="study-add__item-row" id="add-row">
-            <input type="text" id="spell" data-title="spell">
-            <input type="text" id="spell-type" data-title="spell-type">
-          </div>
-        </div>
+        <table>
+          <thead>
+            <tr class="study-add__header">
+              <th>Навыки</th>
+              <th>Тип навыка</th>
+            </tr>
+          </thead>
+          <tbody id="out" data-name='plans'>            
+          </tbody>
+          <tfoot class="study-add__rows" id="add-rows">
+            <tr class="study-add__item-row" id="add-row">
+              <td>
+                <input type="text" id="spell" data-title="spell">
+              </td>
+              <td>
+                <input type="text" id="spell-type" data-title="spell-type">
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
         <div class="study-add__btns">
           <button class="addStr">Добавить строку</button>
         </div>
       </div>
       <div class="navButtons">
-        <button type="submit" id="btnNextProfModule" class="btn-send">Перейте к след. Проф. модулю</button>
-        <button type="submit" id="btnDone" class="btn-send">Завершить</button>
+        <button type="submit" id="btnNext" class="btn btn-send disabled" disabled>Перейте к след. Проф. модулю</button>
+        <button type="submit" id="btnDone" class="btn btn-send">Завершить</button>
       </div>
     </section>
   </div>  
