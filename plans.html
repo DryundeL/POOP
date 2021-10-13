@@ -8,14 +8,17 @@
   <link rel="stylesheet" href="./assets/css/general.css">
 </head>
 <body>
-  <h1 class="title">Специальности</h1>
+  <h1 class="title">Учебный план</h1>
   <div class="wrapper">
     <section class="study-add">
       <div class="study-add__form">
         <div class="study-add__header">
-          <span>Код специальности</span>
-          <span>Наименование специальности</span>
-          <span>Дата обновления</span>
+          <span>Индекс</span>
+          <span>Наименование</span>
+          <span>Всего</span>
+          <span>Дисциплины</span>
+          <span>Практики</span>
+          <span>Самостоятельная работа</span>
         </div>
         <hr>
           <table id="out" data-name='plans'>
@@ -24,8 +27,12 @@
         <hr>
         <div class="study-add__rows" id="add-rows">
           <div class="study-add__item-row" id="add-row">
-            <input type="text" id="code-speciality" data-title="code-speciality">
-            <input type="text" id="name-speciality" data-title="name-speciality">
+            <input type="text" id="index" data-title="index">
+            <input type="text" id="name" data-title="name">
+            <input type="text" id="all" data-title="all">
+            <input type="text" id="disciplines" data-title="disciplines">
+            <input type="text" id="practices" data-title="practices">
+            <input type="text" id="self-work" data-title="self-work">
           </div>
         </div>
         <div class="study-add__btns">
@@ -35,7 +42,7 @@
       <button type="submit" id="btnSend">Отправить</button>
     </section>
   </div>  
-  <script src="./assets/js/general.js"></script>
-  <script src="./assets/js/specialities.js"></script>
+<script src="./assets/js/general.js"></script>
+<script src="./assets/js/plans.js"></script>
 </body>
 </html>

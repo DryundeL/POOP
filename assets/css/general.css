@@ -33,7 +33,8 @@ body {
   text-align: center;
   margin: 70px 0 20px 0;
 }
-.study-add__form {
+.study-add__form,
+.prof-add__rows {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -61,12 +62,14 @@ hr {
   flex-flow: column nowrap;
   gap: 8px;
 }
-.study-add__item-row {
+.study-add__item-row,
+.prof-add__item-row {
   display: flex;
   justify-content: space-around;
   gap: 10px;
 }
-.study-add__item-row input {
+.study-add__item-row input,
+.prof-add__item-row input {
   max-width: 200px;
   width: 100%;
 
@@ -77,14 +80,15 @@ hr {
   font-weight: 500;
   font-size: 16px;
 }
-.study-add__btns {
+.study-add__btns,
+.prof-add__btns {
   display: flex;
   gap: 10px;
   align-items: center;
 
   margin-top: 10px;
 }
-.study-add__btns button,
+.study-add__btns button,.prof-add__btns button,
 #btnSend {
   display: flex;
   align-items: center;
@@ -137,4 +141,9 @@ hr {
 }
 .spellButtons{
   margin-top: 50px;
+}
+
+tr:hover {
+  outline: 2px solid black;
+  cursor: pointer;
 }
