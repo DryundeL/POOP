@@ -10,36 +10,52 @@
 <body>
   <h1 class="title">Учебный план</h1>
   <div class="wrapper">
+    <button class="btn" id="btn-back">Назад</button>
     <section class="study-add">
       <div class="study-add__form">
-        <div class="study-add__header">
-          <span>Индекс</span>
-          <span>Наименование</span>
-          <span>Всего</span>
-          <span>Дисциплины</span>
-          <span>Практики</span>
-          <span>Самостоятельная работа</span>
-        </div>
-        <hr>
-          <table id="out" data-name='plans'>
-            
-          </table>
-        <hr>
-        <div class="study-add__rows" id="add-rows">
-          <div class="study-add__item-row" id="add-row">
-            <input type="text" id="index" data-title="index">
-            <input type="text" id="name" data-title="name">
-            <input type="text" id="all" data-title="all">
-            <input type="text" id="disciplines" data-title="disciplines">
-            <input type="text" id="practices" data-title="practices">
-            <input type="text" id="self-work" data-title="self-work">
-          </div>
-        </div>
+        <table>
+          <thead>
+            <tr class="study-add__header">
+              <th>Индекс</th>
+              <th>Наименование</th>
+              <th>Всего</th>
+              <th>Дисциплины</th>
+              <th>Практики</th>
+              <th>Самостоятельная работа</th>
+            </tr>
+          </thead>
+          <tbody id="out" data-name='plans'>            
+          </tbody>
+          <tfoot class="study-add__rows" id="add-rows">
+            <tr class="study-add__item-row" id="add-row">
+              <td>
+                <input type="text" id="index" data-title="index">
+              </td>
+              <td>
+                <input type="text" id="name" data-title="name">
+              </td>
+              <td>
+                <input type="text" id="all" data-title="all">
+              </td>
+              <td>
+                <input type="text" id="disciplines" data-title="disciplines">
+              </td>
+              <td>
+                <input type="text" id="practices" data-title="practices">
+              </td>
+              <td>
+                <input type="text" id="self-work" data-title="self-work">
+              </td>
+            </tr>
+          </tfoot>
+        </table>
         <div class="study-add__btns">
           <button class="addStr">Добавить строку</button>
         </div>
       </div>
-      <button type="submit" id="btnSend">Отправить</button>
+      <div class="navButtons">
+        <button type="submit" id="btnSend">Отправить</button>
+      </div>
     </section>
   </div>  
 <script src="./assets/js/general.js"></script>

@@ -12,27 +12,34 @@
   <div class="wrapper">
     <section class="study-add">
       <div class="study-add__form">
-        <div class="study-add__header">
-          <span>Код специальности</span>
-          <span>Наименование специальности</span>
-          <span>Дата обновления</span>
-        </div>
-        <hr>
-          <table id="out" data-name='plans'>
-            
-          </table>
-        <hr>
-        <div class="study-add__rows" id="add-rows">
-          <div class="study-add__item-row" id="add-row">
-            <input type="text" id="code-speciality" data-title="code-speciality">
-            <input type="text" id="name-speciality" data-title="name-speciality">
-          </div>
-        </div>
+        <table>
+          <thead>
+            <tr class="study-add__header">
+              <th>Код специальности</th>
+              <th>Наименование специальности</th>
+              <th>Дата обновления</th>
+            </tr>
+          </thead>
+          <tbody id="out" data-name='plans'>            
+          </tbody>
+          <tfoot class="study-add__rows" id="add-rows">
+            <tr class="study-add__item-row" id="add-row">
+              <td>
+                <input type="text" id="code-speciality" data-title="code-speciality">
+              </td>
+              <td>
+                <input type="text" id="name-speciality" data-title="name-speciality">
+              </td>
+            </tr>
+          </tfoot>
+        </table>
         <div class="study-add__btns">
           <button class="addStr">Добавить строку</button>
         </div>
       </div>
-      <button type="submit" id="btnSend">Отправить</button>
+      <div class="navButtons">
+        <button type="submit" id="btnSend">Отправить</button>
+      </div>
     </section>
   </div>  
   <script src="./assets/js/general.js"></script>

@@ -6,8 +6,16 @@ const params = Object.fromEntries(urlSearchParams.entries());
 const id = params.id
 
 btnSend.addEventListener('click', () => {
-  const rows = document.querySelectorAll('#add-rows div')
+  const rows = document.querySelectorAll('#add-rows tr')
   postData(rows, 'plans', id)
 })
 
 getData(type='plans', id)
+
+
+// close btns
+const btnBack = document.querySelector('#btn-back')
+
+btnBack.addEventListener('click', () => 
+  document.location = `./index.html`
+)
