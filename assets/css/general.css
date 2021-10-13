@@ -106,14 +106,12 @@ hr {
 
   transition: hover .3s ease;
 }
-#btnSend {
-  margin: 50px auto 10px auto;
-}
+
 .study-add__btns button:hover {
   background-color: rgb(225, 231, 233);
 }
 .study-add__btns button,
-#btnKnowlegeSkills,#btnNextProfModule,#btnDone {
+.btn-send {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,9 +128,6 @@ hr {
 
   transition: hover .3s ease;
 }
-#btnKnowlegeSkills,#btnNextProfModule,#btnDone {
-  margin: 0 auto 10px auto;
-}
 .study-add__btns button:hover {
   background-color: rgb(225, 231, 233);
 }
@@ -146,4 +141,10 @@ hr {
 tr:hover {
   outline: 2px solid black;
   cursor: pointer;
+}
+
+.navButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
