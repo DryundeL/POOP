@@ -10,48 +10,69 @@
 <body>
   <h1 class="title">Проф модуль</h1>
   <div class="wrapper">
+    <button class="btn" id="btn-back">Назад</button>
     <section class="study-add">
-      <div class="study-add__form">
-        <div class="study-add__header">
-          <span>Наименование Проф. модуля</span>
-          <span>Код проф. модуля</span>
-          <span>Коды ПК</span>
-          <span>Наименование разделов</span>
-          <span>Всего</span>
-          <span>Дисциплины</span>
-          <span>Курсовые</span>
-          <span>Практики</span>
-          <span>Самостоятельная работа</span>
-        </div>
-        <hr>
-          <table id="out" data-name='plans'>
-            
-          </table>
-        <hr>
-        <div class="study-add__rows" id="add-rows">
-          <div class="study-add__item-row" id="add-row">
-            <input type="text" id="name-module" data-title="name-module">
-            <input type="text" id="code-module" data-title="code-module">
-            <input type="text" id="codes-pk" data-title="codes-pk">
-            <input type="text" id="name-section" data-title="name-section">
-            <input type="text" id="all" data-title="all">
-            <input type="text" id="disciplines" data-title="disciplines">
-            <input type="text" id="courseworks" data-title="courseworks">
-            <input type="text" id="practices" data-title="practices">
-            <input type="text" id="self-work" data-title="self-work">
-          </div>
-        </div>
-        <div class="study-add__btns">
-          <button class="addStr">Добавить строку</button>
-        </div>
+      <table>
+        <thead>
+          <tr class="study-add__header">
+            <th>Наименование Проф. модуля</th>
+            <th>Код проф. модуля</th>
+            <th>Коды ПК</th>
+            <th>Наименование разделов</th>
+            <th>Всего</th>
+            <th>Дисциплины</th>
+            <th>Курсовые</th>
+            <th>Практики</th>
+            <th>Самостоятельная работа</th>
+          </tr>
+        </thead>
+        <tbody id="out" data-name='plans'>            
+        </tbody>
+        <tfoot class="study-add__rows" id="add-rows">
+          <tr class="study-add__item-row" id="add-row">
+            <td>
+              <input type="text" id="name-module" data-title="name-module">
+            </td>
+            <td>
+              <input type="text" id="code-module" data-title="code-module">
+            </td>
+            <td>
+              <input type="text" id="codes-pk" data-title="codes-pk">
+            </td>
+            <td>
+              <input type="text" id="name-section" data-title="name-section">
+            </td>
+            <td>
+              <input type="text" id="all" data-title="all">
+            </td>
+            <td>
+              <input type="text" id="disciplines" data-title="disciplines">
+            </td>
+            <td>
+              <input type="text" id="courseworks" data-title="courseworks">
+            </td>
+            <td>
+              <input type="text" id="practices" data-title="practices">
+            </td>
+            <td>
+              <input type="text" id="self-work" data-title="self-work">
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="study-add__btns">
+        <button class="addStr">Добавить строку</button>
       </div>
+
       <div class="navButtons">
-        <button type="submit" id="btnSend" class="btn-send">Перейти к знаниям/умениям</button>
-        <button type="submit" id="btnNext" class="btn-send">Перейти к след. Проф. модулю</button>
-        <button type="submit" id="btnClose" class="btn-send">Завершить</button>
+        <button type="submit" id="btnSend" class="btn btn-send">Перейти к знаниям/умениям</button>
+        <button type="submit" id="btnNext" class="btn btn-send disabled" disabled>Перейти к след. Проф. модулю</button>
+        <button type="submit" id="btnDone" class="btn btn-send">Завершить</button>
       </div>
     </section>
   </div>  
+  <section class="modal"></section>
   <script src="./assets/js/general.js"></script>
   <script src="./assets/js/modules.js"></script>
 </body>
