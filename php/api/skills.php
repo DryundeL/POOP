@@ -1,7 +1,7 @@
 <?php
    require '../db.php';
    require '../libs/rb.php';
-   R::setup('mysql:host=localhost;dbname=newPOOP', $user, $password);
+   R::setup('mysql:host=localhost;dbname=u1026489_par', $user, $password);
 
   if ($_SERVER["REQUEST_METHOD"] === "GET")
   {
@@ -35,5 +35,17 @@
       $studPlan -> type = $record['spell-type'];
       R::store($studPlan);
     }
+  } else if($_SERVER["REQUEST_METHOD"] === "PUT") 
+  {
+    $_PUT = json_decode(file_get_contents('php://input'), true);
+
+    $type = $_PUT['record']["type"];
+    $id = $_PUT['record']["id"];
+    $record = $_PUT['record']['record'];
+
+    $skill = R::find($type, 'id = ?', [$id])[$id];
+    $skill->skill = $record['skill'];
+    $skill->type = $record['type'];
+    R::store($skill);
   }
 ?>

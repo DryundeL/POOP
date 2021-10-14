@@ -43,7 +43,6 @@ function getData(type, parent = undefined) {
     out.innerHTML = ''
     Object.values(res).forEach(row => {
       const tr = document.createElement('tr')
-      tr.dataset.id = row.id
 
       if (type !== 'skills')
         tr.addEventListener('click', () => document.location = `./${getNextType(type)}.html?id=${row.id}`)
@@ -55,15 +54,22 @@ function getData(type, parent = undefined) {
 
         const td = document.createElement('td')
         td.textContent = value
+        td.dataset.title = key
         tr.append(td)
-        tr.innerHTML += `
-          <td class="study-add__edit-icon">
+      })
+      tr.innerHTML += `
+          <td class="study-add__edit-icon" data-id="${row.id}">
             <img src="./assets/icons/edit.svg" alt="">
           </td>
         `
-      })
       out.append(tr)
     })
+
+    const modal = document.querySelector('.modal')
+    if (modal) {
+      const editBtn = document.querySelectorAll('.study-add__edit-icon')
+      editData(editBtn)
+    }
   })
 }
 
@@ -111,37 +117,66 @@ btnAdd.addEventListener('click', () => {
   )
 })
 
-const modal = document.querySelector('.modal')
-if (modal) {
-  const editBtn = document.querySelectorAll('.study-add__edit-icon')
-  editData(editBtn)
-}
-
 function editData (btnsArr) {
+  const modal = document.querySelector('.modal')
   btnsArr.forEach(btn => {
     btn.addEventListener('click', event => {
-    modal.innerHTML = innerModal()
+      event.stopPropagation()
+      modal.innerHTML = innerModal()
 
-    const modalHeaders = document.querySelector('.modal__headers')
-    const modalValues = document.querySelector('.modal__values')
-    const formHeaders = document.querySelectorAll('.study-add__header th')
-    const formValues = event.target.closest('#add-row').children
+      const modalHeaders = document.querySelector('.modal__headers')
+      const modalValues = document.querySelector('.modal__values')
+      const formHeaders = document.querySelectorAll('.study-add__header th')
+      const formValues = event.target.closest('tr').children
 
-    formHeaders.forEach(header => modalHeaders.innerHTML += `<span>${header.innerHTML}</span>`)
-    Array.from(formValues).forEach(value => {
-      if (value.className === 'study-add__edit-icon') return
-      
-      modalValues.innerHTML += `<input value="${'123'}" />`
+      formHeaders.forEach(header => {
+        if (header.textContent === 'Дата обновления') return
+
+        modalHeaders.innerHTML += `<span>${header.innerHTML}</span>`
+      })
+      Array.from(formValues).forEach(value => {
+        if (value.className === 'study-add__edit-icon' || value.dataset.title === 'updated_at') return
+        
+        modalValues.innerHTML += `<input data-title="${value.dataset.title}" value="${value.textContent}" />`
+      })
+
+      modal.addEventListener('click', (e) => {
+        if (e.target == modal || e.target.classList.contains('modal__close')) {
+          closeModal(modal)
+        }
+      });
+
+      const btnUpdate = document.querySelector('#btn-update')
+      btnUpdate.addEventListener('click', () => {
+        const inputs = modal.querySelectorAll('input')
+
+        let type = window.location.pathname.split('.')[0].slice(1)
+        if (type === 'index') type = 'specialities'
+
+        const id = btn.dataset.id
+
+        const record = {
+          type: type,
+          id: id,
+          record: {}
+        }
+        inputs.forEach(input => {
+          const title = input.dataset.title
+          const value = input.value
+          record.record[title] = value
+        })
+
+        fetch(`./php/api/${type}.php`, {
+          method:"PUT",
+          body: JSON.stringify({
+            record
+          })
+        }).then(res =>document.location.reload())
+        // document.location.reload();
+      })
+
+      showModal(modal)
     })
-
-    modal.addEventListener('click', (e) => {
-      if (e.target == modal || e.target.classList.contains('modal__close')) {
-        closeModal(modal)
-      }
-    });
-
-    showModal(modal)
-  })
   })
 }
 
@@ -170,6 +205,7 @@ function innerModal() {
         <div class="modal__headers"></div>
         <div class="modal__values"></div>
       </div>
+      <button class="btn" id="btn-update">Сохранить</button>
     </div>
   `
 }

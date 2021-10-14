@@ -1,7 +1,7 @@
 <?php
    require '../db.php';
    require '../libs/rb.php';
-   R::setup('mysql:host=localhost;dbname=newPOOP', $user, $password);
+   R::setup('mysql:host=localhost;dbname=u1026489_par', $user, $password);
 
   if ($_SERVER["REQUEST_METHOD"] === "GET")
   {
@@ -21,5 +21,18 @@
       $studPlan -> updatedAt = date("d-m-Y");;
       R::store($studPlan);
     }
+  } else if($_SERVER["REQUEST_METHOD"] === "PUT") 
+  {
+    $_PUT = json_decode(file_get_contents('php://input'), true);
+
+    $id = intval($_PUT['record']["id"]);
+    $type = $_PUT['record']["type"];
+    $record = $_PUT['record']['record'];
+    
+    $speciality = R::find($type, 'id = ?', [$id])[$id];
+    var_dump($speciality);
+    $speciality->codeSpeciality = $record['code_speciality'];
+    $speciality->name = $record['name'];
+    R::store($speciality);
   }
 ?>

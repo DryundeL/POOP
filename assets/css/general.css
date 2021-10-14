@@ -167,7 +167,7 @@ td {
 .study-add__edit-icon {
   width: 40px;
   padding: 0;
-  
+
   cursor: pointer;
 
   transition: hover .3s;
@@ -197,7 +197,7 @@ td {
   display: flex;
   align-items: center;
   flex-direction: column;
-  
+
   position: relative;
   z-index: 1000;
   overflow: hidden;
@@ -237,6 +237,7 @@ td {
   font-weight: 600;
   font-size: 20px;
   text-align: right;
+  white-space: nowrap;
 }
 .modal__values {
   display: flex;

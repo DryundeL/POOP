@@ -1,7 +1,7 @@
 <?php
    require '../db.php';
    require '../libs/rb.php';
-   R::setup('mysql:host=localhost;dbname=newPOOP', $user, $password);
+   R::setup('mysql:host=localhost;dbname=u1026489_par', $user, $password);
 
   if ($_SERVER["REQUEST_METHOD"] === "GET")
   {
@@ -31,7 +31,6 @@
       $studPlan -> parent = $parent;
       $studPlan -> nameSpeciality = $speciality[$parent]->nameSpeciality;
       $studPlan -> index = $record['index'];
-      $studPlan -> index = $record['index'];
       $studPlan -> name = $record['name'];
       $studPlan -> all = $record['all'];
       $studPlan -> disciplines = $record['disciplines'];
@@ -39,5 +38,21 @@
       $studPlan -> individualWork = $record['self-work'];
       R::store($studPlan);
     }
+  } else if($_SERVER["REQUEST_METHOD"] === "PUT") 
+  {
+    $_PUT = json_decode(file_get_contents('php://input'), true);
+
+    $type = $_PUT['record']["type"];
+    $id = $_PUT['record']["id"];
+    $record = $_PUT['record']['record'];
+    
+    $plan = R::find($type, 'id = ?', [$id])[$id];
+    $plan->index = $record['index'];
+    $plan->name = $record['name'];
+    $plan->all = $record['all'];
+    $plan->disciplines = $record['disciplines'];
+    $plan->practices = $record['practices'];
+    $plan->individualWork = $record['individual_work'];
+    R::store($plan);
   }
 ?>
