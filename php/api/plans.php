@@ -29,7 +29,7 @@
 
       $studPlan = R::dispense('plans');
       $studPlan -> parent = $parent;
-      $studPlan -> nameSpeciality = $speciality[$parent]->nameSpeciality;
+      $studPlan -> nameSpeciality = $speciality[$parent]->name;
       $studPlan -> index = $record['index'];
       $studPlan -> name = $record['name'];
       $studPlan -> all = $record['all'];

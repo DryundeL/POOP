@@ -27,13 +27,13 @@
     $records = $_POST['items'];
 
     foreach ($records as $record) {
-      $speciality = R::find('specialities', 'id = ?', [$parent]);
+      $plans = R::find('plans', 'id = ?', [$parent]);
 
       $studPlan = R::dispense('modules');
       $studPlan -> parent = $parent;
-      $studPlan -> nameSpeciality = $speciality[$parent]->nameSpeciality;
-      $studPlan -> nameModule = $record['name-module'];
-      $studPlan -> codeModule = $record['code-module'];
+      $studPlan -> nameSpeciality = $plans[$parent]->nameSpeciality;
+      $studPlan -> nameModule = $plans[$parent]->name;
+      $studPlan -> codeModule = $plans[$parent]->index;
       $studPlan -> codesPk = $record['codes-pk'];
       $studPlan -> nameSection = $record['name-section'];
       $studPlan -> all = $record['all'];
