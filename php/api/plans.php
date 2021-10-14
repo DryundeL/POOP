@@ -1,7 +1,7 @@
 <?php
    require '../db.php';
    require '../libs/rb.php';
-   R::setup('mysql:host=localhost;dbname=u1026489_par', $user, $password);
+   R::setup('mysql:host=localhost;dbname=newPOOP', $user, $password);
 
   if ($_SERVER["REQUEST_METHOD"] === "GET")
   {
@@ -29,7 +29,7 @@
 
       $studPlan = R::dispense('plans');
       $studPlan -> parent = $parent;
-      $studPlan -> nameSpeciality = $speciality[$parent]->nameSpeciality;
+      $studPlan -> nameSpeciality = $speciality[$parent]->name;
       $studPlan -> index = $record['index'];
       $studPlan -> name = $record['name'];
       $studPlan -> all = $record['all'];

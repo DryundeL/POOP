@@ -51,6 +51,7 @@ function getData(type, parent = undefined) {
         const key = col[0]
         const value = col[1]
         if (key === 'id' || key === 'parent' || key === 'code' || key === 'name_speciality') return
+        if (type === 'modules' && (key === 'name_module' || key === 'code_module')) return
 
         const td = document.createElement('td')
         td.textContent = value
@@ -130,12 +131,10 @@ function editData (btnsArr) {
       const formValues = event.target.closest('tr').children
 
       formHeaders.forEach(header => {
-        if (header.textContent === 'Дата обновления') return
-
         modalHeaders.innerHTML += `<span>${header.innerHTML}</span>`
       })
       Array.from(formValues).forEach(value => {
-        if (value.className === 'study-add__edit-icon' || value.dataset.title === 'updated_at') return
+        if (value.className === 'study-add__edit-icon') return
         
         modalValues.innerHTML += `<input data-title="${value.dataset.title}" value="${value.textContent}" />`
       })
