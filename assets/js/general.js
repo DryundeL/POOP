@@ -130,12 +130,12 @@ function editData (btnsArr) {
       const formValues = event.target.closest('tr').children
 
       formHeaders.forEach(header => {
-        if (header.textContent === 'Дата обновления') return
-
+        // if (header.textContent === 'Дата обновления') return
         modalHeaders.innerHTML += `<span>${header.innerHTML}</span>`
       })
       Array.from(formValues).forEach(value => {
-        if (value.className === 'study-add__edit-icon' || value.dataset.title === 'updated_at') return
+        if (value.className === 'study-add__edit-icon') return
+        // || value.dataset.title === 'updated_at'
         
         modalValues.innerHTML += `<input data-title="${value.dataset.title}" value="${value.textContent}" />`
       })
