@@ -17,9 +17,22 @@
     foreach ($records as $record) {
       $studPlan = R::dispense('specialities');
       $studPlan -> codeSpeciality = $record['code-speciality'];
-      $studPlan -> nameSpeciality = $record['name-speciality'];
+      $studPlan -> name = $record['name-speciality'];
       $studPlan -> updatedAt = date("d-m-Y");;
       R::store($studPlan);
     }
+  } else if($_SERVER["REQUEST_METHOD"] === "PUT") 
+  {
+    $_PUT = json_decode(file_get_contents('php://input'), true);
+
+    $id = intval($_PUT['record']["id"]);
+    $type = $_PUT['record']["type"];
+    $record = $_PUT['record']['record'];
+    
+    $speciality = R::find($type, 'id = ?', [$id])[$id];
+    var_dump($speciality);
+    $speciality->codeSpeciality = $record['code_speciality'];
+    $speciality->name = $record['name'];
+    R::store($speciality);
   }
 ?>
