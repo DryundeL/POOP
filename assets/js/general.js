@@ -43,6 +43,7 @@ function getData(type, parent = undefined) {
     out.innerHTML = ''
     Object.values(res).forEach(row => {
       const tr = document.createElement('tr')
+      tr.dataset.id = row.id
 
       if (type !== 'skills')
         tr.addEventListener('click', () => document.location = `./${getNextType(type)}.html?id=${row.id}`)
@@ -55,6 +56,11 @@ function getData(type, parent = undefined) {
         const td = document.createElement('td')
         td.textContent = value
         tr.append(td)
+        tr.innerHTML += `
+          <td class="study-add__edit-icon">
+            <img src="./assets/icons/edit.svg" alt="">
+          </td>
+        `
       })
       out.append(tr)
     })
@@ -104,3 +110,66 @@ btnAdd.addEventListener('click', () => {
     addRow.outerHTML
   )
 })
+
+const modal = document.querySelector('.modal')
+if (modal) {
+  const editBtn = document.querySelectorAll('.study-add__edit-icon')
+  editData(editBtn)
+}
+
+function editData (btnsArr) {
+  btnsArr.forEach(btn => {
+    btn.addEventListener('click', event => {
+    modal.innerHTML = innerModal()
+
+    const modalHeaders = document.querySelector('.modal__headers')
+    const modalValues = document.querySelector('.modal__values')
+    const formHeaders = document.querySelectorAll('.study-add__header th')
+    const formValues = event.target.closest('#add-row').children
+
+    formHeaders.forEach(header => modalHeaders.innerHTML += `<span>${header.innerHTML}</span>`)
+    Array.from(formValues).forEach(value => {
+      if (value.className === 'study-add__edit-icon') return
+      
+      modalValues.innerHTML += `<input value="${'123'}" />`
+    })
+
+    modal.addEventListener('click', (e) => {
+      if (e.target == modal || e.target.classList.contains('modal__close')) {
+        closeModal(modal)
+      }
+    });
+
+    showModal(modal)
+  })
+  })
+}
+
+function showModal(mod) {
+  const html = document.getElementsByTagName('html')[0]
+  document.body.style.top = `-${window.scrollY}px`
+  html.style.position = 'fixed'
+  mod.style.display = 'flex'
+}
+
+function closeModal(mod) {
+  const html = document.getElementsByTagName('html')[0]
+  const scrollY = document.body.style.top
+  html.style.position = ''
+  document.body.style.top = ''
+  window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  mod.style.display = 'none'
+}
+
+function innerModal() {
+  return  `
+    <div class="modal__container">
+      <img class="modal__close" src="./assets/icons/close.svg" />
+      <p>Редактирование</p>
+      <div class="modal__edit">
+        <div class="modal__headers"></div>
+        <div class="modal__values"></div>
+      </div>
+    </div>
+  `
+}

@@ -17,7 +17,7 @@
     foreach ($records as $record) {
       $studPlan = R::dispense('specialities');
       $studPlan -> codeSpeciality = $record['code-speciality'];
-      $studPlan -> nameSpeciality = $record['name-speciality'];
+      $studPlan -> name = $record['name-speciality'];
       $studPlan -> updatedAt = date("d-m-Y");;
       R::store($studPlan);
     }
