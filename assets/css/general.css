@@ -263,3 +263,18 @@ td {
 
   cursor: pointer;
 }
+
+select {
+  width: 300px;
+
+  padding: 10px 20px;
+
+  background-color: #E2EDF0;
+  border-radius: 10px;
+  cursor: pointer;
+
+  font-size: 16px;
+}
+select option {
+  cursor: pointer;
+}
