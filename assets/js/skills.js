@@ -5,10 +5,15 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const id = params.id
 
+
 btns.forEach(btn => {
   btn.addEventListener('click', () => {
-    const rows = document.querySelectorAll('#add-rows tr')
-    postData(rows, 'skills', id)
+    const skillNames = document.querySelectorAll('#spell')
+    const skillTypes = document.querySelectorAll('#spell-type')
+    
+    let skills = [...skillNames, ...skillTypes]
+    
+    secondPostData(skills, 'skills', id)
   })
 })
 
@@ -19,6 +24,7 @@ getData(type='skills', id)
 const btnBack = document.querySelector('#btn-back')
 const btnDone = document.querySelector('#btnDone')
 const btnNextModule = document.querySelector('#btnNext')
+const btnSend = document.querySelector('#btnSend')
 
 btnBack.addEventListener('click', () => getParent('modules', id))
 

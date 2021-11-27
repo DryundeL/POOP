@@ -5,40 +5,41 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const id = params.id
 
+
 btns.forEach(btn => {
   btn.addEventListener('click', () => {
-    const rows = document.querySelectorAll('#add-rows tr')
-    postData(rows, 'modules', id)
+    const moduleThemes = document.querySelectorAll('#module-theme')
+    const contents = document.querySelectorAll('#content')
+    const lessonTypes = document.querySelectorAll('#lesson-type')
+    const hoursCount = document.querySelectorAll('#hours-count')
+    
+    let themePlans = [...moduleThemes, ...contents, ...lessonTypes, ...hoursCount]
+    
+    secondPostData(themePlans, 'themePlan', id)
   })
 })
 
-getData(type='modules', id)
+getData(type='themePlan', id)
 
 
 // close btns
 const btnBack = document.querySelector('#btn-back')
 const btnDone = document.querySelector('#btnDone')
 const btnNextModule = document.querySelector('#btnNext')
-const themePlan = document.querySelector('#btnSendNext')
+const btnSend = document.querySelector('#btnSend')
 
-themePlan.addEventListener('click', () => {
-  const rows = document.querySelectorAll('#add-rows tr')
-  thirdPostData(rows, 'modules', id)
-})
-
-btnBack.addEventListener('click', () => getParent('plans', id))
+btnBack.addEventListener('click', () => getParent('modules', id))
 
 btnDone.addEventListener('click', () => {
-  getParent('plans', id)
+  getParent('modules', id)
 })
 
-checkId('plans', parseInt(id) + 1).then(res => {
-  console.log(res);
+checkId('modules', parseInt(id) + 1).then(res => {
   if (res) {
     btnNextModule.classList.remove('disabled')
     btnNextModule.disabled = false;
     btnNextModule.addEventListener('click', () => {
-      document.location = `./modules.html?id=${parseInt(id)+1}` 
+      document.location = `./themePlan.html?id=${parseInt(id)+1}` 
     })
   }
 })

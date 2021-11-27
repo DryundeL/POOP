@@ -20,7 +20,7 @@ function postData(rows, type, parent = undefined) {
       items: records,
     })
   }).then(() => {
-    if (type === 'skills') 
+    if (type === 'skills' || type === 'themePlan') 
       getData(type, parent)
     else 
       getLastId(type).then(id =>
@@ -36,21 +36,111 @@ function postData(rows, type, parent = undefined) {
   })
 }
 
+function secondPostData(inputs, type, parent = undefined) {
+  const records = []
+  const record = {}
+    
+    Array.from(inputs).forEach(input => {
+      const title = input.dataset.title
+      record[title] = input.value
+      console.log(record[title])
+    })
+
+    records.push(record)
+
+
+  fetch(`./php/api/${type}.php`, {
+    method:"POST",
+    body: JSON.stringify({
+      type,
+      parent,
+      items: records,
+    })
+  }).then(() => {
+    if (type === 'skills' || type === 'themePlan') 
+      getData(type, parent)
+    else 
+      getLastId(type).then(id =>
+        document.location = `./${getNextType(type)}.html?id=${id}` 
+      )
+  })
+
+}
+
+function thirdPostData(rows, type, parent = undefined) {
+  const records = []
+  rows.forEach(row => {
+    const record = {}
+    const inputs = row.querySelectorAll('input')
+    
+    Array.from(inputs).forEach(input => {
+      const title = input.dataset.title
+      record[title] = input.value
+    })
+
+    records.push(record)
+  })
+
+  fetch(`./php/api/${type}.php`, {
+    method:"POST",
+    body: JSON.stringify({
+      type,
+      parent,
+      items: records,
+    })
+  }).then(() => {
+    if (type === 'skills' || type === 'themePlan') 
+      getData(type, parent)
+    else 
+      getLastId(type).then(id =>
+        document.location = `./${getNextType('skills')}.html?id=${id}` 
+      )
+  })
+
+  rows.forEach(row => {   
+    const inputs = row.children 
+    Array.from(inputs).forEach(input => {
+      input.value = ""
+    })
+  })
+}
+
+
 function getData(type, parent = undefined) {
+  const modal = document.querySelector('.modal')
+  
   fetch(`./php/api/${type}.php${type !== 'specialities' ? '?id=' + parent : ''}`)
   .then(res => res.json())
   .then(res => {
+    console.log(res)
     out.innerHTML = ''
     Object.values(res).forEach(row => {
       const tr = document.createElement('tr')
 
-      if (type !== 'skills')
-        tr.addEventListener('click', () => document.location = `./${getNextType(type)}.html?id=${row.id}`)
+      if (type !== 'skills' || type !== 'themePlan') {
+        if (type === 'modules'){
+          tr.addEventListener('click', () => {
+            modal.innerHTML = innerModalChoice()
+            const themePlan = document.querySelector('#btnTheme')
+            const skills = document.querySelector('#btnSkills')
+            themePlan.addEventListener('click', () => document.location = `./${getNextType('skills')}.html?id=${row.id}`)
+            skills.addEventListener('click', () => document.location = `./${getNextType(type)}.html?id=${row.id}`)
+            showModal(modal)
+            modal.addEventListener('click', (e) => {
+              if (e.target == modal || e.target.classList.contains('modal__close')) {
+                closeModal(modal)
+              }
+            });
+          })
+        }
+        else
+          tr.addEventListener('click', () => document.location = `./${getNextType(type)}.html?id=${row.id}`)
+      }
       
       Object.entries(row).forEach(col => {
         const key = col[0]
         const value = col[1]
-        if (key === 'id' || key === 'parent' || key === 'code' || key === 'name_speciality') return
+        if (key === 'id' || key === 'parent' || key === 'code' || key === 'name_speciality' || key ==='id_module') return
         if (type === 'modules' && (key === 'name_module' || key === 'code_module')) return
 
         const td = document.createElement('td')
@@ -66,7 +156,6 @@ function getData(type, parent = undefined) {
       out.append(tr)
     })
 
-    const modal = document.querySelector('.modal')
     if (modal) {
       const editBtn = document.querySelectorAll('.study-add__edit-icon')
       editData(editBtn)
@@ -82,13 +171,13 @@ async function getLastId(type) {
 }
 
 function getNextType(type) {
-  const types = ['specialities', 'plans', 'modules', 'skills']
+  const types = ['specialities', 'plans', 'modules', 'skills', 'themePlan']
   const indexCurrentType = types.indexOf(type)
   return types[indexCurrentType + 1]
 }
 
 function getPrevType(type) {
-  const types = ['specialities', 'plans', 'modules', 'skills']
+  const types = ['specialities', 'plans', 'modules', 'skills', 'themePlan']
   const indexCurrentType = types.indexOf(type)
   return types[indexCurrentType - 1]
 }
@@ -205,6 +294,19 @@ function innerModal() {
         <div class="modal__values"></div>
       </div>
       <button class="btn" id="btn-update">Сохранить</button>
+    </div>
+  `
+}
+
+function innerModalChoice() {
+  return  `
+    <div class="modal__container">
+      <img class="modal__close" src="./assets/icons/close.svg" />
+      <span>Выберите куда совершить переход</span>
+      <span>&#160;</span>
+      <button class="btn btn-send" id="btnSkills">Навыки</button>
+      <span>&#160;</span>
+      <button class="btn" id="btnTheme">Тематический план</button>
     </div>
   `
 }
