@@ -1,7 +1,7 @@
 <?php
    require '../db.php';
    require '../libs/rb.php';
-   R::setup('mysql:host=localhost;dbname=u1026489_par', $user, $password);
+   R::setup('mysql:host=localhost;dbname=newPOOP', $user, $password);
 
   if ($_SERVER["REQUEST_METHOD"] === "GET")
   {
@@ -36,11 +36,11 @@
       $studPlan -> codeModule = $plans[$parent]->index;
       $studPlan -> codesPk = $record['codes-pk'];
       $studPlan -> nameSection = $record['name-section'];
-      $studPlan -> all = $record['all'];
-      $studPlan -> disciplines = $record['disciplines'];
-      $studPlan -> courseworks = $record['courseworks'];
-      $studPlan -> practices = $record['practices'];
-      $studPlan -> individualWork = $record['self-work'];
+      $studPlan -> all = (int)$record['all'];
+      $studPlan -> disciplines = (int)$record['disciplines'];
+      $studPlan -> courseworks = (int)$record['courseworks'];
+      $studPlan -> practices = (int)$record['practices'];
+      $studPlan -> individualWork = (int)$record['self-work'];
 
       R::store($studPlan);
     }
@@ -57,11 +57,11 @@
     $module->codeModule = $record['code_module'];
     $module->codesPk = $record['codes_pk'];
     $module->nameSection = $record['name_section'];
-    $module->all = $record['all'];
-    $module->disciplines = $record['disciplines'];
-    $module->courseworks = $record['courseworks'];
-    $module->practices = $record['practices'];
-    $module->individualWork = $record['individual_work'];
+    $module->all = (int)$record['all'];
+    $module->disciplines = (int)$record['disciplines'];
+    $module->courseworks = (int)$record['courseworks'];
+    $module->practices = (int)$record['practices'];
+    $module->individualWork = (int)$record['individual_work'];
     R::store($module);
   }
 ?>
