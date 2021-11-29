@@ -8,12 +8,8 @@ const id = params.id
 
 btns.forEach(btn => {
   btn.addEventListener('click', () => {
-    const skillNames = document.querySelectorAll('#spell')
-    const skillTypes = document.querySelectorAll('#spell-type')
-    
-    let skills = [...skillNames, ...skillTypes]
-    
-    secondPostData(skills, 'skills', id)
+    const rows = document.querySelectorAll('#add-rows tr')
+    skillsPostData(rows, 'skills', id)
   })
 })
 

@@ -152,6 +152,7 @@ th,
 td {
   text-align: center;
   padding: 12px;
+  max-width: 300px;
 }
 
 .navButtons {

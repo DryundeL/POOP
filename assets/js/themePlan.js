@@ -8,14 +8,8 @@ const id = params.id
 
 btns.forEach(btn => {
   btn.addEventListener('click', () => {
-    const moduleThemes = document.querySelectorAll('#module-theme')
-    const contents = document.querySelectorAll('#content')
-    const lessonTypes = document.querySelectorAll('#lesson-type')
-    const hoursCount = document.querySelectorAll('#hours-count')
-    
-    let themePlans = [...moduleThemes, ...contents, ...lessonTypes, ...hoursCount]
-    
-    secondPostData(themePlans, 'themePlan', id)
+    const rows = document.querySelectorAll('#add-rows tr')
+    themePostData(rows, 'themePlan', id)
   })
 })
 
