@@ -36,10 +36,16 @@ function postData(rows, type, parent = undefined) {
   })
 }
 
-function secondPostData(inputs, type, parent = undefined) {
+function themePostData(rows, type, parent = undefined) {
   const records = []
-  const record = {}
+  rows.forEach(row => {
+    const record = {}
+    const moduleThemes = row.querySelectorAll('#module-theme')
+    const contents = row.querySelectorAll('#content')
+    const lessonTypes = row.querySelectorAll('#lesson-type')
+    const hoursCount = row.querySelectorAll('#hours-count')
     
+    let inputs = [...moduleThemes, ...contents, ...lessonTypes, ...hoursCount]
     Array.from(inputs).forEach(input => {
       const title = input.dataset.title
       record[title] = input.value
@@ -47,7 +53,42 @@ function secondPostData(inputs, type, parent = undefined) {
     })
 
     records.push(record)
+  })
 
+  fetch(`./php/api/${type}.php`, {
+    method:"POST",
+    body: JSON.stringify({
+      type,
+      parent,
+      items: records,
+    })
+  }).then(() => {
+    if (type === 'skills' || type === 'themePlan') 
+      getData(type, parent)
+    else 
+      getLastId(type).then(id =>
+        document.location = `./${getNextType(type)}.html?id=${id}` 
+      )
+  })
+
+}
+
+function skillsPostData(rows, type, parent = undefined) {
+  const records = []
+  rows.forEach(row => {
+    const record = {}
+    const skillNames = row.querySelectorAll('#spell')
+    const skillTypes = row.querySelectorAll('#spell-type')
+    
+    let inputs = [...skillNames, ...skillTypes]
+    Array.from(inputs).forEach(input => {
+      const title = input.dataset.title
+      record[title] = input.value
+      console.log(record[title])
+    })
+
+    records.push(record)
+  })
 
   fetch(`./php/api/${type}.php`, {
     method:"POST",
