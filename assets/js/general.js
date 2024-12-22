@@ -20,12 +20,7 @@ function postData(rows, type, parent = undefined) {
       items: records,
     })
   }).then(() => {
-    if (type === 'skills' || type === 'themePlan') 
-      getData(type, parent)
-    else 
-      getLastId(type).then(id =>
-        document.location = `./${getNextType(type)}.html?id=${id}` 
-      )
+    getData(type)
   })
 
   rows.forEach(row => {   
@@ -53,6 +48,13 @@ function themePostData(rows, type, parent = undefined) {
     })
 
     records.push(record)
+
+    rows.forEach(row => {
+      const inputs = row.children
+      Array.from(inputs).forEach(input => {
+        input.value = ""
+      })
+    })
   })
 
   fetch(`./php/api/${type}.php`, {
@@ -63,12 +65,8 @@ function themePostData(rows, type, parent = undefined) {
       items: records,
     })
   }).then(() => {
-    if (type === 'skills' || type === 'themePlan') 
-      getData(type, parent)
-    else 
-      getLastId(type).then(id =>
-        document.location = `./${getNextType(type)}.html?id=${id}` 
-      )
+    getData(type)
+
   })
 
 }
@@ -88,6 +86,13 @@ function skillsPostData(rows, type, parent = undefined) {
     })
 
     records.push(record)
+
+    rows.forEach(row => {
+      const inputs = row.children
+      Array.from(inputs).forEach(input => {
+        input.value = ""
+      })
+    })
   })
 
   fetch(`./php/api/${type}.php`, {
@@ -98,12 +103,7 @@ function skillsPostData(rows, type, parent = undefined) {
       items: records,
     })
   }).then(() => {
-    if (type === 'skills' || type === 'themePlan') 
-      getData(type, parent)
-    else 
-      getLastId(type).then(id =>
-        document.location = `./${getNextType(type)}.html?id=${id}` 
-      )
+    getData(type)
   })
 
 }
@@ -120,6 +120,13 @@ function thirdPostData(rows, type, parent = undefined) {
     })
 
     records.push(record)
+
+    rows.forEach(row => {
+      const inputs = row.children
+      Array.from(inputs).forEach(input => {
+        input.value = ""
+      })
+    })
   })
 
   fetch(`./php/api/${type}.php`, {
@@ -130,12 +137,7 @@ function thirdPostData(rows, type, parent = undefined) {
       items: records,
     })
   }).then(() => {
-    if (type === 'skills' || type === 'themePlan') 
-      getData(type, parent)
-    else 
-      getLastId(type).then(id =>
-        document.location = `./${getNextType('skills')}.html?id=${id}` 
-      )
+    getData(type)
   })
 
   rows.forEach(row => {   
